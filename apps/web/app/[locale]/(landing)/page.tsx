@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Build scalable applications faster with our production-ready template featuring Next.js, TypeScript, and modern tooling.",
 };
 
-export default function Page(): JSX.Element {
+export default function Page() {
   return (
     <main className="min-h-screen bg-background relative">
       <Header />
