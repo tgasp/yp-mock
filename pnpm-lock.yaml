@@ -29,6 +29,9 @@ importers:
       '@vitejs/plugin-react-swc':
         specifier: ^3.8.0
         version: 3.8.0(@swc/helpers@0.5.15)(vite@6.1.0(@types/node@20.17.10)(jiti@1.21.6)(terser@5.38.2)(yaml@2.6.1))
+      '@workspace/types':
+        specifier: workspace:^
+        version: link:../../packages/types
       '@workspace/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -337,10 +340,6 @@ importers:
         version: 8.24.0(eslint@9.17.0(jiti@1.21.6))(typescript@5.7.2)
 
   packages/types:
-    dependencies:
-      class-validator:
-        specifier: ^0.14.1
-        version: 0.14.1
     devDependencies:
       typescript:
         specifier: ^5.3.3
