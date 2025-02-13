@@ -14,20 +14,7 @@ export class AuthController {
     summary: 'Admin login',
     description: 'Login endpoint for administrators. Creates first admin if no admins exist.',
   })
-  @ApiBody({
-    type: LoginDto,
-    description: 'Admin credentials',
-    examples: {
-      admin: {
-        summary: 'Admin Login Example',
-        description: 'A sample admin login request',
-        value: {
-          email: 'admin@example.com',
-          password: 'admin123',
-        },
-      },
-    },
-  })
+  @ApiBody({ type: LoginDto })
   @ApiResponse({
     status: 200,
     description: 'Successfully logged in',
@@ -59,20 +46,7 @@ export class AuthController {
     summary: 'Customer login',
     description: 'Login endpoint for customers.',
   })
-  @ApiBody({
-    type: LoginDto,
-    description: 'Customer credentials',
-    examples: {
-      customer: {
-        summary: 'Customer Login Example',
-        description: 'A sample customer login request',
-        value: {
-          email: 'customer@example.com',
-          password: 'customer123',
-        },
-      },
-    },
-  })
+  @ApiBody({ type: LoginDto })
   @ApiResponse({
     status: 200,
     description: 'Successfully logged in',
