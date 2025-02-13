@@ -1,6 +1,10 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, ChangeEvent } from "react";
 import { useAuthStore } from "../store/auth";
 import { Button } from "@ui/components/button";
+import { Input } from "@ui/components/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@ui/components/card";
+import { Alert, AlertDescription } from "@ui/components/alert";
+import { AlertCircle } from "lucide-react";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -8,7 +12,7 @@ export default function Login() {
   const [error, setError] = useState("");
   const login = useAuthStore((state) => state.login);
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
 
@@ -28,59 +32,69 @@ export default function Login() {
     }
   };
 
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
   return (
-    <div className="w-full max-w-md">
-      <div className="rounded-lg bg-white px-8 pb-8 pt-6 shadow-md">
-        <h2 className="mb-6 text-center text-2xl font-bold">Admin Login</h2>
+    <div className="container flex h-screen w-full items-center justify-center">
+      <Card className="w-full max-w-md">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-center text-2xl">Admin Login</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {error && (
+            <Alert variant="destructive" className="mb-6">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
 
-        {error && (
-          <div className="mb-4 rounded-md bg-red-50 p-4 text-red-700">
-            {error}
-          </div>
-        )}
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <label
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                htmlFor="email"
+              >
+                Email
+              </label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="name@example.com"
+                value={email}
+                onChange={handleEmailChange}
+                required
+              />
+            </div>
 
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label
-              className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="email"
-            >
-              Email
-            </label>
-            <input
-              className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none"
-              id="email"
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
+            <div className="space-y-2">
+              <label
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                htmlFor="password"
+              >
+                Password
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={handlePasswordChange}
+                required
+              />
+            </div>
 
-          <div className="mb-6">
-            <label
-              className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <input
-              className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 focus:outline-none"
-              id="password"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="flex items-center justify-between">
-            <Button type="submit">Sign In 2</Button>
-          </div>
-        </form>
-      </div>
+            <Button type="submit" className="w-full">
+              Sign In
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
   );
 }

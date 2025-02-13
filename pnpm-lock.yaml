@@ -32,6 +32,9 @@ importers:
       '@workspace/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      lucide-react:
+        specifier: 0.456.0
+        version: 0.456.0(react@18.3.1)
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -10128,6 +10131,10 @@ snapshots:
       yallist: 3.1.1
 
   lru-cache@7.18.3: {}
+
+  lucide-react@0.456.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
 
   lucide-react@0.456.0(react@19.0.0):
     dependencies:

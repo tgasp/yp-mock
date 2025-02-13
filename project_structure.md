@@ -2,13 +2,14 @@
 
 ## Overview
 
-This is a monorepo project using pnpm workspaces, containing a Next.js web application, NestJS backend server, and shared packages for UI components, types, and configurations. The project is built with TypeScript and follows modern development practices.
+This is a monorepo project using pnpm workspaces, containing a Next.js web application, NestJS backend server, an admin panel, and shared packages for UI components, types, and configurations. The project is built with TypeScript and follows modern development practices.
 
 ## Repository Structure
 
 ```
 ├── apps/
 │   ├── web/                 # Next.js frontend application
+│   ├── admin/              # Admin panel application
 │   └── server/             # NestJS backend application
 ├── packages/
 │   ├── ui/                 # Shared UI component library
@@ -49,6 +50,20 @@ This is a monorepo project using pnpm workspaces, containing a Next.js web appli
   ├── hooks/              # Custom React hooks
   ├── lib/                # Utility functions
   ├── messages/          # i18n translation files
+  ```
+
+### Admin Application (apps/admin)
+- Built with Vite and React
+- Features authentication system with protected routes
+- Uses Shadcn UI components
+- Structure:
+  ```
+  ├── src/
+  │   ├── layouts/        # Layout components (auth and guest)
+  │   ├── pages/         # Application pages
+  │   ├── store/         # State management
+  │   ├── assets/        # Static assets
+  │   └── main.tsx       # Application entry point
   ```
 
 ### Server Application (apps/server)
