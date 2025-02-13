@@ -11,9 +11,10 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "dependencies": {
-    "@workspace/types": "workspace:^",
     "@vitejs/plugin-react-swc": "^3.8.0",
+    "@workspace/types": "workspace:^",
     "@workspace/ui": "workspace:*",
+    "axios": "^1.7.9",
     "lucide-react": "0.456.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

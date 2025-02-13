@@ -5,30 +5,30 @@ import { Input } from "@ui/components/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@ui/components/card";
 import { Alert, AlertDescription } from "@ui/components/alert";
 import { AlertCircle } from "lucide-react";
+import { authApi } from "../lib/api";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const login = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
+    setIsLoading(true);
 
     try {
-      // TODO: Replace with actual API call
-      if (email === "admin@example.com" && password === "password") {
-        login("fake-token", {
-          id: "1",
-          email: "admin@example.com",
-          name: "Admin User",
-        });
-      } else {
-        setError("Invalid credentials");
-      }
-    } catch (err) {
-      setError("An error occurred");
+      const response = await authApi.login(email, password);
+      login(response.access_token, response.user);
+      navigate("/dashboard");
+    } catch (err: any) {
+      setError(err.response?.data?.message || "An error occurred during login");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -69,6 +69,7 @@ export default function Login() {
                 value={email}
                 onChange={handleEmailChange}
                 required
+                disabled={isLoading}
               />
             </div>
 
@@ -86,11 +87,12 @@ export default function Login() {
                 value={password}
                 onChange={handlePasswordChange}
                 required
+                disabled={isLoading}
               />
             </div>
 
-            <Button type="submit" className="w-full">
-              Sign In
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Signing in..." : "Sign In"}
             </Button>
           </form>
         </CardContent>
