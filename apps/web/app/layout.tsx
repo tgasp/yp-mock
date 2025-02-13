@@ -1,4 +1,4 @@
-import "@workspace/ui/globals.css";
+import "./globals.css";
 
 import { NextIntlClientProvider } from "next-intl";
 import { Geist, Geist_Mono } from "next/font/google";

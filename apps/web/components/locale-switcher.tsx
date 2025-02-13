@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@workspace/ui/components/button";
+import { Button } from "@/components/ui/button";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 
