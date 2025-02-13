@@ -2,17 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link, useLocation, Outlet } from "react-router-dom";
 import { useAuth } from "../../lib/auth";
 import { Button } from "../ui/button";
-import {
-  Settings,
-  Users,
-  Layout,
-  Home,
-  Bell,
-  Search,
-  Sun,
-  Moon,
-  ChevronDown,
-} from "lucide-react";
+import { Bell, Search, Sun, Moon, ChevronDown, LucideIcon } from "lucide-react";
+import { getNavigationItems } from "../../config/routes";
 
 export function AdminLayout() {
   const navigate = useNavigate();
@@ -33,16 +24,13 @@ export function AdminLayout() {
 
   const isActiveRoute = (path: string) => location.pathname === path;
 
-  const navItems = [
-    { path: "/dashboard", icon: Home, label: "Dashboard" },
-    { path: "/users", icon: Users, label: "Users" },
-    { path: "/content", icon: Layout, label: "Content" },
-    { path: "/settings", icon: Settings, label: "Settings" },
-  ];
+  const navItems = getNavigationItems();
 
   return (
     <div
-      className={`min-h-screen bg-background transition-colors duration-300 ${isDark ? "dark" : ""}`}
+      className={`min-h-screen bg-background transition-colors duration-300 ${
+        isDark ? "dark" : ""
+      }`}
     >
       {/* Sidebar */}
       <aside className="fixed left-0 top-0 z-40 h-screen w-64 border-r bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -52,19 +40,22 @@ export function AdminLayout() {
           </span>
         </div>
         <nav className="space-y-1.5 px-3 py-4">
-          {navItems.map(({ path, icon: Icon, label }) => (
-            <Button
-              key={path}
-              variant={isActiveRoute(path) ? "secondary" : "ghost"}
-              className="w-full justify-start hover:bg-accent/50 transition-all duration-300"
-              asChild
-            >
-              <Link to={path}>
-                <Icon className="mr-2 h-4 w-4" />
-                {label}
-              </Link>
-            </Button>
-          ))}
+          {navItems.map(({ path, icon: Icon, label }) => {
+            const IconComponent = Icon as LucideIcon;
+            return (
+              <Button
+                key={path}
+                variant={isActiveRoute(path) ? "secondary" : "ghost"}
+                className="w-full justify-start hover:bg-accent/50 transition-all duration-300"
+                asChild
+              >
+                <Link to={path}>
+                  {IconComponent && <IconComponent className="mr-2 h-4 w-4" />}
+                  {label}
+                </Link>
+              </Button>
+            );
+          })}
         </nav>
       </aside>
 
@@ -88,11 +79,7 @@ export function AdminLayout() {
               <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-destructive" />
             </Button>
             <Button variant="ghost" size="icon" onClick={toggleTheme}>
-              {isDark ? (
-                <Sun className="h-4 w-4" />
-              ) : (
-                <Moon className="h-4 w-4" />
-              )}
+              {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </Button>
             <Button variant="ghost" className="gap-2" onClick={handleLogout}>
               <img
