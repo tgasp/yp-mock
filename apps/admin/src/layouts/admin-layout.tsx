@@ -1,23 +1,51 @@
-import { Outlet } from 'react-router-dom'
-import { Navbar } from '../components/navbar'
-import { Sidebar } from '../components/sidebar'
+import { Outlet } from "react-router-dom";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+  SidebarProvider,
+  SidebarTrigger,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarInset,
+} from "@ui/components/sidebar";
 
 export function AdminLayout() {
   return (
-    <div className="flex h-screen">
-      {/* Sidebar */}
-      <Sidebar />
-
-      {/* Main Content */}
-      <div className="flex flex-1 flex-col">
-        {/* Navbar */}
-        <Navbar />
-
-        {/* Content */}
-        <main className="flex-1 overflow-auto bg-muted/10">
+    <SidebarProvider defaultOpen>
+      <div className="flex h-screen bg-slate-50 dark:bg-slate-950">
+        <Sidebar>
+          <SidebarHeader className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold">Admin Portal</span>
+            </div>
+            <SidebarTrigger />
+          </SidebarHeader>
+          <SidebarContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  Dashboard
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  Users
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <SidebarMenuButton>
+                  Settings
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </SidebarMenu>
+          </SidebarContent>
+        </Sidebar>
+        <SidebarInset>
           <Outlet />
-        </main>
+        </SidebarInset>
       </div>
-    </div>
-  )
+    </SidebarProvider>
+  );
 }
