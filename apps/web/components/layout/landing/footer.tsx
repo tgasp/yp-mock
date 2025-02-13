@@ -1,5 +1,3 @@
-import { ReactElement } from "react";
-
-export function Footer(): ReactElement {
+export function Footer(): JSX.Element {
   return <footer></footer>;
 }
