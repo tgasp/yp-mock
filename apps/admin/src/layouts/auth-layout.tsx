@@ -16,7 +16,7 @@ export default function AuthLayout() {
               </div>
             </div>
             <div className="flex items-center">
-              <span className="mr-4">{user?.name}</span>
+              <span className="mr-4">{user?.firstName}</span>
               <button
                 onClick={logout}
                 className="rounded-md bg-gray-200 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-300"

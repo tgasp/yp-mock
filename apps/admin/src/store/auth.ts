@@ -1,21 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-
-interface User {
-  id: string
-  email: string
-  role: string
-  firstName: string
-  lastName: string
-}
-
-interface AuthState {
-  isAuthenticated: boolean
-  token: string | null
-  user: User | null
-  login: (token: string, user: User) => void
-  logout: () => void
-}
+import { AuthState, User } from '@workspace/types'
 
 export const useAuthStore = create<AuthState>()(
   persist(
@@ -23,7 +8,7 @@ export const useAuthStore = create<AuthState>()(
       isAuthenticated: false,
       token: null,
       user: null,
-      login: (token, user) => set({ isAuthenticated: true, token, user }),
+      login: (token: string, user: User) => set({ isAuthenticated: true, token, user }),
       logout: () => set({ isAuthenticated: false, token: null, user: null }),
     }),
     {
