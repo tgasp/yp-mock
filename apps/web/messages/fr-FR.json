@@ -1,5 +1,26 @@
 {
   "nav": {
-    "gettingStarted": "Guide de démarrage"
+    "gettingStarted": "Commencer"
+  },
+  "footer": {
+    "company": {
+      "title": "Entreprise",
+      "about": "À propos",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "legal": {
+      "title": "Légal",
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions d'utilisation"
+    },
+    "social": {
+      "title": "Réseaux sociaux",
+      "twitter": "Twitter",
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    },
+    "copyright": "© 2024 Votre Entreprise. Tous droits réservés.",
+    "language": "Langue"
   }
 }

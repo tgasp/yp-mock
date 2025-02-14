@@ -25,6 +25,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   const locale = (await params).locale;
   const messages = await getMessages({ locale });
 
+  console.log(locale);
   return (
     <html lang={locale} className="dark">
       <body

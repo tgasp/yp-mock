@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Header } from "@/components/layout/landing/header";
-import { Footer } from "@/components/layout/landing/footer";
+import { Header } from "@/src/components/layout/landing/header";
+import { Footer } from "@/src/components/layout/landing/footer";
 
 export const metadata: Metadata = {
   title: "Website",

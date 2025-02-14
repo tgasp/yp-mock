@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/src/components/ui/button";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -10,9 +10,12 @@ export default function LocaleSwitcher() {
 
   const switchLocale = () => {
     const nextLocale = locale === "en-US" ? "fr-FR" : "en-US";
+
+    debugger
     // Remove the current locale from pathname if it exists
     const newPathname =
       pathname.replace(`/${locale === "en-US" ? "en" : "fr"}`, "") || "/";
+      
     router.push(`/${nextLocale === "en-US" ? "en" : "fr"}${newPathname}`);
   };
 

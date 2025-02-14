@@ -1,5 +1,26 @@
 {
   "nav": {
     "gettingStarted": "Getting Started"
+  },
+  "footer": {
+    "company": {
+      "title": "Company",
+      "about": "About",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service"
+    },
+    "social": {
+      "title": "Social",
+      "twitter": "Twitter",
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    },
+    "copyright": "© 2024 Your Company. All rights reserved.",
+    "language": "Language"
   }
 }
