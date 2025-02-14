@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { buttonVariants } from "@/src/components/ui/button";
 import { cn } from "@/src/lib/utils";
+import LocaleSwitcher from "@/src/components/LocaleSwitcher";
 
 export function Header() {
   return (
@@ -34,6 +35,7 @@ export function Header() {
           </nav>
         </div>
         <div className="flex items-center gap-4">
+          <LocaleSwitcher />
           <Link
             href="/signin"
             className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}

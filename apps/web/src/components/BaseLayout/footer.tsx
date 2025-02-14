@@ -1,4 +1,3 @@
-import LocaleSwitcher from "@/src/components/LocaleSwitcher";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
@@ -104,16 +103,6 @@ export function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
-
-          {/* Language Section */}
-          <div>
-            <h3 className="text-sm font-semibold leading-6 text-foreground">
-              {t("language")}
-            </h3>
-            <div className="mt-6">
-              <LocaleSwitcher />
-            </div>
           </div>
         </div>
       </div>
