@@ -2,75 +2,80 @@ import { defineRouting } from 'next-intl/routing';
 import { createNavigation } from 'next-intl/navigation';
 
 export const routing = defineRouting({
-  locales: ['en-US', 'fr-FR'],
-  defaultLocale: 'en-US',
+  locales: ['en', 'fr'],
+  defaultLocale: 'en',
   localePrefix: {
     mode: 'always',
     prefixes: {
-      'en-US': '/en',
-      'fr-FR': '/fr'
+      'en': '/en',
+      'fr': '/fr'
     }
   },
   pathnames: {
     '/': '/',
     '/organization': {
-      'en-US': '/organization',
-      'fr-FR': '/organisation'
+      'en': '/organization',
+      'fr': '/organisation'
     },
     '/features': {
-      'en-US': '/features',
-      'fr-FR': '/fonctionnalites'
+      'en': '/features',
+      'fr': '/fonctionnalites'
     },
     '/getting-started': {
-      'en-US': '/getting-started',
-      'fr-FR': '/guide-de-demarrage'
+      'en': '/getting-started',
+      'fr': '/guide-de-demarrage'
     },
     '/roadmap': {
-      'en-US': '/roadmap',
-      'fr-FR': '/feuille-de-route'
+      'en': '/roadmap',
+      'fr': '/feuille-de-route'
     },
     '/pricing': {
-      'en-US': '/pricing',
-      'fr-FR': '/tarifs'
+      'en': '/pricing',
+      'fr': '/tarifs'
     },
     '/install': {
-      'en-US': '/install',
-      'fr-FR': '/installation'
+      'en': '/install',
+      'fr': '/installation'
     },
     '/signin': {
-      'en-US': '/signin',
-      'fr-FR': '/connexion'
+      'en': '/signin',
+      'fr': '/connexion'
     },
     '/dashboard': {
-      'en-US': '/dashboard',
-      'fr-FR': '/tableau-de-bord'
+      'en': '/dashboard',
+      'fr': '/tableau-de-bord'
     },
     '/contact': {
-      'en-US': '/contact',
-      'fr-FR': '/contact'
+      'en': '/contact',
+      'fr': '/contact'
     },
     '/settings': {
-      'en-US': '/settings',
-      'fr-FR': '/settings'
+      'en': '/settings',
+      'fr': '/settings'
     },
     '/about': {
-      'en-US': '/about',
-      'fr-FR': '/a-propos'
+      'en': '/about',
+      'fr': '/a-propos'
     },
     '/privacy': {
-      'en-US': '/privacy',
-      'fr-FR': '/politique-de-confidentialite'
+      'en': '/privacy',
+      'fr': '/politique-de-confidentialite'
     },
     '/terms': {
-      'en-US': '/terms',
-      'fr-FR': '/conditions'
+      'en': '/terms',
+      'fr': '/conditions',
     }
   }
 
 });
 
+export type Pathnames = keyof typeof routing.pathnames;
+export type Locale = typeof routing.locales[number];
 
-export type ValidPaths = keyof typeof routing.pathnames;
+export const localesLabels: { [key in Locale]: string } = {
+  'en': 'English',
+  'fr': 'Français',
+}
 
 // Lightweight wrappers around Next.js' navigation APIs
 // that will consider the routing configuration

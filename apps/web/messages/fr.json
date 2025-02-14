@@ -1,4 +1,14 @@
 {
+  "LocaleLayout": {
+    "title": "Nom du site"
+  },
+  "LocaleSwitcher": {
+    "label": "Langue"
+  },
+  "NotFoundPage": {
+    "description": "Veuillez vérifier la barre d'adresse du navigateur ou utiliser la navigation pour aller à une page connue.",
+    "title": "Page non trouvée"
+  },
   "nav": {
     "gettingStarted": "Commencer"
   },
