@@ -1,11 +1,11 @@
-import "@/src/app/globals.css";
+import "@/app/globals.css";
 
 import { NextIntlClientProvider } from "next-intl";
 import { Geist, Geist_Mono } from "next/font/google";
 import { getMessages } from "next-intl/server";
-import { routing } from "@/src/i18n/routing";
-import { Header } from "@/src/components/BaseLayout/header";
-import { Footer } from "@/src/components/BaseLayout/footer";
+import { routing } from "@/i18n/routing";
+import { Header } from "@/components/BaseLayout/header";
+import { Footer } from "@/components/BaseLayout/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

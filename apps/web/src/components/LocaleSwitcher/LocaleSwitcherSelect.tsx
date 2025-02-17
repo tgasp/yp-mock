@@ -3,7 +3,7 @@
 import clsx from 'clsx';
 import {useParams} from 'next/navigation';
 import {ChangeEvent, ReactNode, useTransition} from 'react';
-import {Pathnames, usePathname, useRouter} from '@/src/i18n/routing';
+import {Pathnames, usePathname, useRouter} from '@/i18n/routing';
 import { ChevronDown } from "lucide-react";
 
 type Props = {

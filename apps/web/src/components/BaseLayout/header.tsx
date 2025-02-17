@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { buttonVariants } from "@/src/components/ui/button";
-import { cn } from "@/src/lib/utils";
-import LocaleSwitcher from "@/src/components/LocaleSwitcher";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import LocaleSwitcher from "@/components/LocaleSwitcher";
 
 export function Header() {
   return (

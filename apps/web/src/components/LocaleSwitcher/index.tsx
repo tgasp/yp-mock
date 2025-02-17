@@ -1,14 +1,14 @@
 'use client';
 import { useLocale, useTranslations } from "next-intl";
-import { localesLabels, routing, usePathname, useRouter } from "@/src/i18n/routing";
+import { localesLabels, routing, usePathname, useRouter } from "@/i18n/routing";
 import { Check, Globe } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/src/components/ui/dropdown-menu";
-import { Button } from "@/src/components/ui/button";
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
 import { useParams } from "next/navigation";
 import { useTransition } from "react";
 
