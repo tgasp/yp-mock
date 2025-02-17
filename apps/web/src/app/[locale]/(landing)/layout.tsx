@@ -1,40 +1,19 @@
-import { notFound } from "next/navigation";
-import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ReactNode } from "react";
-import BaseLayout from "@/components/BaseLayout";
-import { Locale, routing } from "@/i18n/routing";
+import "@/app/globals.css";
+
+import { Header } from "@/components/LandingLayout/header";
+import { Footer } from "@/components/LandingLayout/footer";
 
 type Props = {
-  children: ReactNode;
-  params: Promise<{ locale: string }>;
+  children: React.ReactNode;
+  locale: string;
 };
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
-
-export async function generateMetadata({ params }: Omit<Props, "children">) {
-  const locale = (await params).locale;
-
-  const t = await getTranslations({ locale, namespace: "LocaleLayout" });
-
-  return {
-    title: t("title"),
-    description: "Description",
-    keywords: ["site", "web"],
-  };
-}
-
-export default async function LocaleLayout({ children, params }: Props) {
-  const locale = (await params).locale;
-
-  // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as Locale)) {
-    notFound();
-  }
-
-  // Enable static rendering
-  setRequestLocale(locale);
-
-  return <BaseLayout locale={locale}>{children}</BaseLayout>;
+export default async function LandingLayout({ children }: Props) {
+  return (
+    <>
+      <Header />
+      <main className="flex-1">{children}</main>
+      <Footer />
+    </>
+  );
 }

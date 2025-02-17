@@ -1,4 +1,4 @@
-import BaseLayout from '@/components/BaseLayout';
+import LandingLayout from '@/app/[locale]/(landing)/layout';
 import NotFoundPage from '@/components/NotFoundPage';
 import {routing} from '@/i18n/routing';
 
@@ -8,8 +8,8 @@ import {routing} from '@/i18n/routing';
 
 export default function GlobalNotFound() {
   return (
-    <BaseLayout locale={routing.defaultLocale}>
+    <LandingLayout locale={routing.defaultLocale}>
       <NotFoundPage />
-    </BaseLayout>
+    </LandingLayout>
   );
 }
