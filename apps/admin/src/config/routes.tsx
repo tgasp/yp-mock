@@ -21,6 +21,12 @@ export interface RouteConfig {
   children?: RouteConfig[];
 }
 
+interface NavigationItem {
+  path: string;
+  icon: React.ComponentType;
+  label: string;
+}
+
 export const routes: RouteConfig[] = [
   {
     path: "/",
@@ -73,10 +79,12 @@ export const routes: RouteConfig[] = [
 ];
 
 // Helper to get navigation items from routes
-export const getNavigationItems = () =>
+export const getNavigationItems = (): NavigationItem[] =>
   routes
     .flatMap((route) => route.children || [])
-    .filter((route) => route.showInNav)
+    .filter((route): route is RouteConfig & { icon: React.ComponentType; label: string } => 
+      route.showInNav === true && !!route.icon && !!route.label
+    )
     .map(({ path, icon, label }) => ({
       path: `/${path}`,
       icon,

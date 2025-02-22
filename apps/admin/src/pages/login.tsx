@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "../lib/auth";
 import { authApi } from "../lib/api";
 import { Button } from "../components/ui/button";
+import { LanguageSwitcher } from "../components/ui/language-switcher";
 import { AxiosError } from "axios";
 
 export function LoginPage() {
@@ -12,6 +14,7 @@ export function LoginPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const setAuth = useAuth((state) => state.setAuth);
+  const { t } = useTranslation("common");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,9 +27,9 @@ export function LoginPage() {
       navigate("/dashboard");
     } catch (err) {
       if (err instanceof AxiosError) {
-        setError(err.response?.data?.message || "Invalid credentials");
+        setError(err.response?.data?.message || t("auth.invalidCredentials"));
       } else {
-        setError("An unexpected error occurred");
+        setError(t("common.error"));
       }
     } finally {
       setLoading(false);
@@ -36,16 +39,19 @@ export function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-50">
       <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-6 shadow-lg">
+        <div className="flex justify-end">
+          <LanguageSwitcher />
+        </div>
         <div>
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-            Admin Login
+            {t("auth.login")}
           </h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4 rounded-md shadow-sm">
             <div>
               <label htmlFor="email" className="sr-only">
-                Email address
+                {t("auth.email")}
               </label>
               <input
                 id="email"
@@ -55,12 +61,12 @@ export function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="relative block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                placeholder="Email address"
+                placeholder={t("auth.email")}
               />
             </div>
             <div>
               <label htmlFor="password" className="sr-only">
-                Password
+                {t("auth.password")}
               </label>
               <input
                 id="password"
@@ -70,7 +76,7 @@ export function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="relative block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                placeholder="Password"
+                placeholder={t("auth.password")}
               />
             </div>
           </div>
@@ -87,7 +93,7 @@ export function LoginPage() {
               disabled={loading}
               className="group relative flex w-full justify-center"
             >
-              {loading ? "Signing in..." : "Sign in"}
+              {loading ? t("common.loading") : t("auth.signIn")}
             </Button>
           </div>
         </form>

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate, Link, useLocation, Outlet } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useAuth } from "../../lib/auth";
 import { Button } from "../ui/button";
 import { Bell, Search, Sun, Moon, ChevronDown, LucideIcon } from "lucide-react";
 import { getNavigationItems } from "../../config/routes";
+import { LanguageSwitcher } from "../ui/language-switcher";
 
 export function AdminLayout() {
   const navigate = useNavigate();
@@ -11,6 +13,7 @@ export function AdminLayout() {
   const [isDark, setIsDark] = useState(false);
   const user = useAuth((state) => state.user);
   const logout = useAuth((state) => state.logout);
+  const { t } = useTranslation("common");
 
   const handleLogout = () => {
     logout();
@@ -51,7 +54,7 @@ export function AdminLayout() {
               >
                 <Link to={path}>
                   {IconComponent && <IconComponent className="mr-2 h-4 w-4" />}
-                  {label}
+                  {t(`navigation.${label.toLowerCase()}`)}
                 </Link>
               </Button>
             );
@@ -74,6 +77,7 @@ export function AdminLayout() {
             </div>
           </div>
           <div className="flex items-center gap-4">
+            <LanguageSwitcher />
             <Button variant="ghost" size="icon" className="relative">
               <Bell className="h-4 w-4" />
               <span className="absolute right-2.5 top-2.5 h-2 w-2 rounded-full bg-destructive" />

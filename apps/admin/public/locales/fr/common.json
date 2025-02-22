@@ -1,0 +1,29 @@
+{
+  "navigation": {
+    "dashboard": "Tableau de bord",
+    "users": "Utilisateurs",
+    "content": "Contenu",
+    "settings": "Paramètres"
+  },
+  "auth": {
+    "login": "Connexion Admin",
+    "email": "Email",
+    "password": "Mot de passe",
+    "signIn": "Se connecter",
+    "invalidCredentials": "Email ou mot de passe invalide"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur inattendue s'est produite",
+    "success": "Succès",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "create": "Créer"
+  },
+  "language": {
+    "en": "Anglais",
+    "fr": "Français"
+  }
+}
