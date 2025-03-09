@@ -85,15 +85,25 @@ export function AdminLayout() {
             <Button variant="ghost" size="icon" onClick={toggleTheme}>
               {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </Button>
-            <Button variant="ghost" className="gap-2" onClick={handleLogout}>
-              <img
-                alt="Avatar"
-                className="h-6 w-6 rounded-full"
-                src="https://ui-avatars.com/api/?background=random"
-              />
-              <span>{user?.firstName || user?.email}</span>
-              <ChevronDown className="h-4 w-4" />
-            </Button>
+            <div className="relative group">
+              <Button variant="ghost" className="gap-2">
+                <img
+                  alt="Avatar"
+                  className="h-6 w-6 rounded-full"
+                  src="https://ui-avatars.com/api/?background=random"
+                />
+                <span>{`${user?.firstName || ''} ${user?.lastName || ''}`}</span>
+                <ChevronDown className="h-4 w-4" />
+              </Button>
+              <div className="absolute right-0 mt-2 w-48 py-2 bg-background border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <button
+                  onClick={handleLogout}
+                  className="w-full px-4 py-2 text-sm font-medium text-destructive hover:bg-accent/50 transition-colors flex items-center gap-2"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
           </div>
         </header>
 
