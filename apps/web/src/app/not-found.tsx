@@ -1,6 +1,7 @@
-import LandingLayout from '@/app/[locale]/(landing)/layout';
-import NotFoundPage from '@/components/NotFoundPage';
-import {routing} from '@/i18n/routing';
+import LandingLayout from "@/components/layouts/LandingLayout";
+import LocaleLayout from "@/components/layouts/LocaleLayout";
+import NotFoundPage from "@/components/NotFoundPage";
+import { routing } from "@/i18n/routing";
 
 // This page renders when a route like `/unknown.txt` is requested.
 // In this case, the layout at `app/[locale]/layout.tsx` receives
@@ -8,8 +9,10 @@ import {routing} from '@/i18n/routing';
 
 export default function GlobalNotFound() {
   return (
-    <LandingLayout locale={routing.defaultLocale}>
-      <NotFoundPage />
-    </LandingLayout>
+    <LocaleLayout params={Promise.resolve({ locale: routing.defaultLocale })}>
+      <LandingLayout>
+        <NotFoundPage />
+      </LandingLayout>
+    </LocaleLayout>
   );
 }

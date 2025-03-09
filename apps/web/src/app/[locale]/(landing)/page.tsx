@@ -1,5 +1,5 @@
 import { type Metadata } from "next";
-import { Header } from "@/components/LandingLayout/header";
+import { Header } from "@/components/layouts/LandingLayout/header";
 
 interface Feature {
   title: string;
