@@ -5,6 +5,8 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { EmailModule } from './email/email.module';
 import { User } from './users/entities/user.entity';
+import { MediaModule } from 'src/media/media.module';
+import { MediaEntity } from 'src/media/entities/media.entity';
 
 @Module({
   imports: [
@@ -20,7 +22,7 @@ import { User } from './users/entities/user.entity';
         username: configService.get('DB_USERNAME', 'postgres'),
         password: configService.get('DB_PASSWORD', 'postgres'),
         database: configService.get('DB_NAME', 'wallpaper-api'),
-        entities: [User],
+        entities: [User, MediaEntity],
         synchronize: configService.get('NODE_ENV', 'development') === 'development',
       }),
       inject: [ConfigService],
@@ -28,6 +30,7 @@ import { User } from './users/entities/user.entity';
     UsersModule,
     AuthModule,
     EmailModule,
+    MediaModule
   ],
   controllers: [],
 })
