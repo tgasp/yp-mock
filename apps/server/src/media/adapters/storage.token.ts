@@ -1,1 +1,0 @@
-export const STORAGE_ADAPTER = 'STORAGE_ADAPTER';

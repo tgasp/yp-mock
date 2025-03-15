@@ -14,8 +14,8 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()
-    .setTitle('Admin API')
-    .setDescription('The Admin API description')
+    .setTitle('Yandex Park API')
+    .setDescription('Yandex Park mock API')
     .setVersion('1.0')
     .addBearerAuth()
     .build();
@@ -23,8 +23,10 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document);
 
-  await app.listen(3100);
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  const port = process.env.PORT || 3010;
+
+  await app.listen(port);
+  console.log(`app runs on http://localhost:${port}/swagger`);
 }
 
 bootstrap();

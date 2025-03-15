@@ -1,7 +1,7 @@
 {
-  "name": "server",
+  "name": "yp-mock",
   "version": "0.0.1",
-  "description": "Wallpaper App",
+  "description": "Yandex Park API Mock",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

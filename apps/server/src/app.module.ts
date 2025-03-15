@@ -3,11 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { EmailModule } from './email/email.module';
 import { User } from './users/entities/user.entity';
-import { MediaModule } from 'src/media/media.module';
-import { MediaEntity } from 'src/media/entities/media.entity';
-
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -22,16 +18,14 @@ import { MediaEntity } from 'src/media/entities/media.entity';
         username: configService.get('DB_USERNAME', 'postgres'),
         password: configService.get('DB_PASSWORD', 'postgres'),
         database: configService.get('DB_NAME', 'wallpaper-api'),
-        entities: [User, MediaEntity],
+        entities: [User],
         synchronize: configService.get('NODE_ENV', 'development') === 'development',
       }),
       inject: [ConfigService],
     }),
     UsersModule,
     AuthModule,
-    EmailModule,
-    MediaModule
   ],
   controllers: [],
 })
-export class AppModule {}
+export class AppModule { }
