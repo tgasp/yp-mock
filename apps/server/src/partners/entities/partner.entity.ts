@@ -8,6 +8,9 @@ export class Partner {
     @Column({ unique: true })
     apiKey: string;
 
+    @Column({ unique: true })
+    clientId: string;
+
     @Column()
     name: string;
 }

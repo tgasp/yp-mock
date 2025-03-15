@@ -4,15 +4,29 @@ import { UpdatePartnerDto } from './dto/update-partner.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Partner } from './entities/partner.entity';
 import { Repository } from 'typeorm';
+import { randomBytes } from 'crypto';
 
 @Injectable()
 export class PartnersService {
   constructor(@InjectRepository(Partner) private partnerRepository: Repository<Partner>) { }
 
-  create(createPartnerDto: CreatePartnerDto) {
-    this.partnerRepository.save({ ...createPartnerDto});
+  private generateClientId(): string {
+    return randomBytes(16).toString('hex');
+  }
 
-    return 'This action adds a new partner';
+  private generateApiKey(): string {
+    return randomBytes(32).toString('hex');
+  }
+
+  async create(createPartnerDto: CreatePartnerDto) {
+    const partner = this.partnerRepository.create({
+      ...createPartnerDto,
+      clientId: this.generateClientId(),
+      apiKey: this.generateApiKey(),
+    });
+
+    await this.partnerRepository.save(partner);
+    return partner;
   }
 
   findAll() {
@@ -20,7 +34,7 @@ export class PartnersService {
   }
 
   findOne(id: string) {
-    return this.partnerRepository.find({ where: { id } });
+    return this.partnerRepository.findOne({ where: { id } });
   }
 
   update(id: number, updatePartnerDto: UpdatePartnerDto) {
